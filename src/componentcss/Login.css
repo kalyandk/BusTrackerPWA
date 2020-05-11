@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;1,500&family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;1,500&family=Open+Sans:wght@300&display=swap');
+
+.mainContainer {
+    font-family: 'Open Sans', sans-serif;
+    align-items: center;
+    /* padding-top: 50%; */
+    /* justify-content: center; */
+    width: 90%;
+    margin: auto;
+    /* margin-top: 40vh; */
+
+
+
+
+}
+
+.inputText {
+    height: 3.5rem;
+}
+
+.labelName {
+    font-size: large;
+}
+
+.header1 {
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 25vh;
+    font-size: 3rem;
+    color: #208AE2
+}
+
+#btnSubmit {
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    color: white;
+    background-color: #208AE2;
+}
