@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 
 import RouteHelper from "./components/RouteHelper";
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
-  return <RouteHelper />;
+  return (
+    <div className="main">
+      <RouteHelper />
+    </div>
+  );
 }
 
 export default App;

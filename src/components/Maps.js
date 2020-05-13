@@ -15,30 +15,56 @@ const btnstyle = {
   opacity: "50%",
 };
 export class Maps extends Component {
+  intervalID = 0;
   constructor(props) {
     super(props);
     this.state = {
+      intervalID: 0,
+      routeId: this.props.location.busid,
       coords: {
-        lat: 0,
-        lng: 0,
+        lat: 17.488689,
+        lng: 78.488019,
       },
+      toggleInfo: false,
     };
   }
+  setToggleInfo = () => {
+    console.log("toggled");
+    this.state.toggleInfo = !this.state.toggleInfo;
+  };
   goBack = () => {
     this.props.history.goBack();
   };
   setLocation = () => {
+    let bearerToken = "Bearer " + localStorage.getItem("access_token");
+
+    let config = {
+      headers: {
+        Authorization: bearerToken,
+      },
+      params: {
+        routeId: this.state.routeId,
+      },
+    };
+
     axios
-      .get("https://5ea476ae270de6001646056f.mockapi.io/reports/coords")
+      .get(
+        "http://ec2-3-7-131-60.ap-south-1.compute.amazonaws.com/tracking",
+        config
+      )
       .then((res) => {
+        // console.log(res.data);
         let newState = { ...this.state };
-        newState.coords = res.data;
+        newState.coords.lat = Number(res.data[0].latitude);
+        newState.coords.lng = Number(res.data[0].longitude);
         this.setState(newState);
+        // console.log(this.state.coords);
       });
   };
   componentDidMount() {
+    // console.log("busid" + this.props.location.busid);
     this.setLocation();
-    let intervalID = setInterval(() => {
+    this.intervalID = setInterval(() => {
       this.setLocation();
     }, 10000);
   }
@@ -54,7 +80,7 @@ export class Maps extends Component {
             google={this.props.google}
             zoom={18}
             style={mapStyles}
-            center={this.state.coords}
+            center={{ lat: this.state.coords.lat, lng: this.state.coords.lng }}
           >
             <Icon
               size="huge"
@@ -62,7 +88,19 @@ export class Maps extends Component {
               name="chevron circle left"
               onClick={this.goBack}
             />
-            <Marker position={this.state.coords} icon={busimg}></Marker>
+            <Marker
+              position={{
+                lat: this.state.coords.lat,
+                lng: this.state.coords.lng,
+              }}
+              icon={busimg}
+              onClick={this.setToggleInfo}
+            ></Marker>
+            <InfoWindow>
+              <div>
+                <h1>hello</h1>
+              </div>
+            </InfoWindow>
           </Map>
         </div>
       </div>

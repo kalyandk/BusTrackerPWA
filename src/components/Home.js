@@ -1,13 +1,36 @@
-import React, { useState } from "react";
-import { List, Button, Icon } from "semantic-ui-react";
+import React, { useState, useEffect } from "react";
+import { List, Icon } from "semantic-ui-react";
 import "../componentcss/Home.css";
-import Axios from "axios";
-import { Link, Router, Redirect } from "react-router-dom";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import AuthHelper from "./AuthHelper";
-import Auth from "./AuthHelper";
 
 function Home(props) {
-  const [busList, setBusList] = useState(["24", "25", "26", "27"]);
+  const [busList, setBusList] = useState([]);
+  const getData = () => {
+    let bearerToken = "Bearer " + localStorage.getItem("access_token");
+
+    let config = {
+      headers: {
+        Authorization: bearerToken,
+      },
+    };
+
+    axios
+      .get(
+        "http://ec2-3-7-131-60.ap-south-1.compute.amazonaws.com/buses",
+        config
+      )
+      .then((res) => {
+        // console.log(res.data);
+        setBusList(res.data);
+      })
+
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   const signout = () => {
     AuthHelper.signout();
     props.history.push("/login");
@@ -16,7 +39,7 @@ function Home(props) {
     props.history.goBack();
   };
   return (
-    <div className="mainContainer">
+    <div className="mainContainerHome">
       <div id="headerhome">
         <Icon
           size="big"
@@ -30,11 +53,12 @@ function Home(props) {
 
       <div className="list">
         {busList.map((item) => (
-          <Link to={{ pathname: "/maps", busid: item }}>
+          <Link to={{ pathname: "/maps", busid: item.routeId }}>
             <div className="listitemcontainer">
-              <List.Icon size="big" name="bus" id="busicon" />
+              <List.Icon size="small" name="bus" id="busicon" />
 
-              <p id="busno">{item}</p>
+              <p id="busno">{item.routeId}</p>
+              <p id="vehicleno">{item.vehicleNo}</p>
 
               {/* <div className="ui divider"></div> */}
             </div>

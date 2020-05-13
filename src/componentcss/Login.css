@@ -1,39 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;1,500&family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;1,500&family=Open+Sans:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;1,500&family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;1,500&family=Open+Sans:wght@300&display=swap");
 
 .mainContainer {
-    font-family: 'Open Sans', sans-serif;
-    align-items: center;
-    /* padding-top: 50%; */
-    /* justify-content: center; */
-    width: 90%;
-    margin: auto;
-    /* margin-top: 40vh; */
+  background-image: url(../assets/backgroundmap2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
+  font-family: "Open Sans", sans-serif;
+  flex-direction: column;
+  /* dont change height */
+  height: 100vh;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
 
+.loginContainer {
+  margin-top: 20vh;
+  align-self: center;
+  background-color: rgb(49, 51, 51);
+  opacity: 0.9;
+  padding: 35px;
 
-
+  border-radius: 12px;
 }
 
 .inputText {
-    height: 3.5rem;
+  height: 3rem;
 }
 
 .labelName {
-    font-size: large;
+  font-size: small;
+
+  color: white;
 }
 
 .header1 {
-    font-family: 'Open Sans', sans-serif;
-    padding-top: 25vh;
-    font-size: 3rem;
-    color: #208AE2
+  font-family: "Open Sans", sans-serif;
+  font-size: 2.3rem;
+  color: white;
 }
 
 #btnSubmit {
-    width: 100%;
-    height: 50px;
-    font-size: 20px;
-    color: white;
-    background-color: #208AE2;
+  width: 100%;
+  height: 40px;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: white;
+  background-color: #208ae2;
+}
+#error_msg {
+  color: rgb(241, 57, 44);
 }

@@ -1,4 +1,13 @@
 .App {
     width: auto;
 
+
+
+}
+
+.main {
+    height: inherit;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }

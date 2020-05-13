@@ -5,7 +5,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import React, { useState } from "react";
+import React from "react";
 import Home from "./Home";
 import Maps from "./Maps";
 import Login from "./Login";

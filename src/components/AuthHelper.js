@@ -1,7 +1,7 @@
 const Auth = {
   isAuthenticated: false,
   checkAuthenticated() {
-    if (localStorage.getItem("user")) {
+    if (localStorage.getItem("access_token")) {
       console.log("setting to authenticated true");
       this.isAuthenticated = true;
     } else {
@@ -13,7 +13,7 @@ const Auth = {
     this.isAuthenticated = true;
   },
   async signout() {
-    await localStorage.removeItem("user");
+    await localStorage.removeItem("access_token");
     this.isAuthenticated = false;
   },
   getAuth() {
