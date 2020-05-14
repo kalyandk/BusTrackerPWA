@@ -36,17 +36,12 @@ function Home(props) {
     props.history.push("/login");
   };
   const goBack = () => {
-    props.history.goBack();
+    // props.history.goBack();
   };
   return (
     <div className="mainContainerHome">
       <div id="headerhome">
-        <Icon
-          size="big"
-          id="goback"
-          name="chevron circle left"
-          onClick={goBack}
-        />
+        <Icon size="big" id="goback" name="home" onClick={goBack} />
         <p id="buslist">BUS LIST</p>
         <Icon size="big" name="sign-out" id="btnlogout" onClick={signout} />
       </div>
