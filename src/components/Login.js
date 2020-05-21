@@ -29,7 +29,7 @@ function Login(props) {
 
     axios
       .post(
-        "https://ec2-3-7-131-60.ap-south-1.compute.amazonaws.com/login",
+        "http://ec2-3-7-131-60.ap-south-1.compute.amazonaws.com/login",
         data
       )
       .then((res) => {
