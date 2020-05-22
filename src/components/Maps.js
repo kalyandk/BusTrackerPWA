@@ -28,10 +28,7 @@ export class Maps extends Component {
       toggleInfo: false,
     };
   }
-  setToggleInfo = () => {
-    console.log("toggled");
-    this.state.toggleInfo = !this.state.toggleInfo;
-  };
+
   goBack = () => {
     this.props.history.goBack();
   };
@@ -72,7 +69,7 @@ export class Maps extends Component {
     clearInterval(this.intervalID);
   }
   render() {
-    console.log(this.state.coords);
+    // console.log(this.state.coords);
     return (
       <div>
         <div>
@@ -94,7 +91,6 @@ export class Maps extends Component {
                 lng: this.state.coords.lng,
               }}
               icon={busimg}
-              onClick={this.setToggleInfo}
             ></Marker>
             <InfoWindow>
               <div>

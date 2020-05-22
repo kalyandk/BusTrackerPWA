@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { List, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
+import { List, Icon } from "semantic-ui-react";
 import "../componentcss/Home.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -41,9 +41,12 @@ function Home(props) {
   return (
     <div className="mainContainerHome">
       <div id="headerhome">
-        <Icon size="big" id="goback" name="" onClick={goBack} />
+        <Icon size="big" id="goback" name="home" onClick={goBack} />
         <p id="buslist">BUS LIST</p>
-        <Icon size="big" name="sign-out" id="btnlogout" onClick={signout} />
+        {/* <Icon size="big" name="sign-out" id="btnlogout" onClick={signout} /> */}
+        <Link to={{ pathname: "/more" }}>
+          <Icon size="big" id="helpIcon" name="help" />
+        </Link>
       </div>
 
       <div className="list">

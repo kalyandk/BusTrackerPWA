@@ -8,6 +8,7 @@ import {
 import React from "react";
 import Home from "./Home";
 import Maps from "./Maps";
+import More from "./More";
 import Login from "./Login";
 import AuthHelper from "./AuthHelper";
 function RouteHelper(props) {
@@ -19,6 +20,7 @@ function RouteHelper(props) {
         <PrivateRoute exact path="/maps" component={Maps} />
         <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/" component={Home} />
+        <PrivateRoute exact path="/more" component={More} />
       </Switch>
     </Router>
   );
