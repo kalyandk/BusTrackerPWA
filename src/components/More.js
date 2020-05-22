@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Select, Form, TextArea, Button } from "semantic-ui-react";
+import { Select, Form, TextArea, Button, Icon } from "semantic-ui-react";
 import axios from "axios";
 import "../componentcss/More.css";
 
-const More = () => {
+const More = (props) => {
   const [body, setBody] = useState("");
   const userValue = [
     { key: "student", value: "student", text: "Student" },
@@ -49,12 +49,18 @@ const More = () => {
 
       .catch((err) => console.log(err));
   };
-
+  const goBack = () => {
+    props.history.goBack();
+  };
   console.log(selectedValue);
   console.log(body);
   return (
     <div className="mainContainerMore">
-      <h1>Complaint Form...</h1>
+      <div id="headerMore">
+        <Icon name="angle left" size="big" onClick={goBack} />
+        <h1>Complaint Form...</h1>
+        <p></p>
+      </div>
       {message.length !== "" && <p className="message">{message}</p>}
       <Form className="formContainer">
         <Form.Field>

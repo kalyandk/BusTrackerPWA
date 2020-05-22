@@ -5,8 +5,11 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import AuthHelper from "./AuthHelper";
 
+import SideDrawer from "./SideDrawer";
+import Backdrop from "./Backdrop";
 function Home(props) {
   const [busList, setBusList] = useState([]);
+  const [sidebarShow, setSidebarShow] = useState(false);
   const getData = () => {
     let bearerToken = "Bearer " + localStorage.getItem("access_token");
 
@@ -35,18 +38,27 @@ function Home(props) {
     AuthHelper.signout();
     props.history.push("/login");
   };
-  const goBack = () => {
-    // props.history.goBack();
+
+  const showSideBar = () => {
+    setSidebarShow(!sidebarShow);
   };
+  const hideSideBar = () => {
+    setSidebarShow(false);
+  };
+  let sideDrawerjsx;
+  let backdropjsx;
+  if (sidebarShow) {
+    backdropjsx = <Backdrop hideSideBar={hideSideBar} />;
+  }
   return (
     <div className="mainContainerHome">
+      <SideDrawer showState={sidebarShow} />
+      {backdropjsx}
       <div id="headerhome">
-        <Icon size="big" id="goback" name="home" onClick={goBack} />
+        <Icon size="big" id="goback" name="list" onClick={showSideBar} />
         <p id="buslist">BUS LIST</p>
         {/* <Icon size="big" name="sign-out" id="btnlogout" onClick={signout} /> */}
-        <Link to={{ pathname: "/more" }}>
-          <Icon size="big" id="helpIcon" name="help" />
-        </Link>
+        <p></p>
       </div>
 
       <div className="list">

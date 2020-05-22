@@ -20,3 +20,12 @@
 .formContainer {
     width: 90%;
 }
+
+#headerMore {
+    padding: 0 7px 0 7px;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: baseline;
+}
