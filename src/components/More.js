@@ -6,11 +6,12 @@ import "../componentcss/More.css";
 const More = (props) => {
   const [body, setBody] = useState("");
   const userValue = [
-    { key: "student", value: "student", text: "Student" },
-    { key: "staff", value: "staff", text: "Staff" },
+    { key: "student", value: "student", text: "student" },
+    { key: "staff", value: "staff", text: "staff" },
   ];
   const [selectedValue, setSelectedValue] = useState("student");
   const [message, setMessage] = useState("");
+
   const getSelectedValue = (event, { value }) => {
     setSelectedValue(event.target.textContent);
   };
@@ -22,11 +23,19 @@ const More = (props) => {
       sendData();
     }
   };
+
   const sendData = () => {
+    let nowDate = new Date(Date.now());
+    nowDate = nowDate.toLocaleString().split(",");
+    let cDate = nowDate[0].split("/");
+    cDate = cDate[2] + "-" + cDate[1] + "-" + cDate[0];
+    let cTime = nowDate[1].trim();
+    console.log(cDate, cTime);
     let data = {
-      from: selectedValue,
-      body: body,
-      date: new Date(Date.now()).toUTCString(),
+      cFrom: selectedValue,
+      cBody: body,
+      cDate: cDate,
+      cTime: cTime,
     };
     let bearerToken = "Bearer " + localStorage.getItem("access_token");
 
@@ -34,14 +43,13 @@ const More = (props) => {
       headers: {
         Authorization: bearerToken,
       },
-      data,
     };
 
     axios
       .post(
-        "http://ec2-3-7-131-60.ap-south-1.compute.amazonaws.com/complaint",
-        config,
-        data
+        "http://ec2-3-7-131-60.ap-south-1.compute.amazonaws.com/complaints",
+        data,
+        config
       )
       .then((res) => {
         setMessage(res.data.message);
@@ -52,21 +60,18 @@ const More = (props) => {
   const goBack = () => {
     props.history.goBack();
   };
-  console.log(selectedValue);
-  console.log(body);
+  // console.log(selectedValue);
+  // console.log(body);
   return (
     <div className="mainContainerMore">
       <div id="headerMore">
-        <Icon name="angle left" size="big" onClick={goBack} />
-        <h1>Complaint Form...</h1>
+        <Icon name="angle left" id="backButton" size="big" onClick={goBack} />
+        <h1 id="complaintForm">COMPLAINT FORM</h1>
         <p></p>
       </div>
       {message.length !== "" && <p className="message">{message}</p>}
       <Form className="formContainer">
         <Form.Field>
-          <label>
-            <p className="labelName">Select User</p>
-          </label>
           <Select
             placeholder="Select designation"
             options={userValue}
@@ -76,12 +81,11 @@ const More = (props) => {
         <Form.Field
           id="textArea"
           control={TextArea}
-          label="Complaint"
           placeholder="Enter your text here"
           onChange={(e) => setBody(e.target.value)}
           rows=""
         />
-        <Button type="submit" id="btnSubmit" onClick={handleSubmit}>
+        <Button id="submitButton" onClick={handleSubmit}>
           SUBMIT
         </Button>
       </Form>

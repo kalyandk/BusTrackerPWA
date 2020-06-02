@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&display=swap');
 
 .mainContainerMore {
     padding-top: 20px;
@@ -7,10 +8,20 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: rgb(187, 184, 184);
     padding-bottom: 30px;
 
     /* background-attachment: fixed; */
+}
+
+a,
+a:hover,
+a:focus,
+a:active,
+a:visited {
+    text-decoration: none;
+    color: inherit;
+    font-size: x-large;
+    align-self: baseline;
 }
 
 .labelName {
@@ -19,6 +30,27 @@
 
 .formContainer {
     width: 90%;
+}
+
+#complaintForm {
+    color: rgba(57, 76, 254);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+#labelName {
+    color: rgba(57, 76, 254);
+}
+
+#backButton {
+    color: rgba(57, 76, 254);
+}
+
+#submitButton {
+    background-color: rgba(57, 76, 254);
+    color: white;
+    width: 100%;
 }
 
 #headerMore {

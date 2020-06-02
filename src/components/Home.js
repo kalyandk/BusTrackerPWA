@@ -25,7 +25,6 @@ function Home(props) {
         config
       )
       .then((res) => {
-        // console.log(res.data);
         setBusList(res.data);
       })
 
@@ -45,17 +44,22 @@ function Home(props) {
   const hideSideBar = () => {
     setSidebarShow(false);
   };
-  let sideDrawerjsx;
+
   let backdropjsx;
   if (sidebarShow) {
     backdropjsx = <Backdrop hideSideBar={hideSideBar} />;
   }
   return (
     <div className="mainContainerHome">
-      <SideDrawer showState={sidebarShow} />
+      <SideDrawer showState={sidebarShow} signout={signout} />
       {backdropjsx}
       <div id="headerhome">
-        <Icon size="big" id="goback" name="list" onClick={showSideBar} />
+        <Icon
+          size="large"
+          id="sidebarToggle"
+          name="list"
+          onClick={showSideBar}
+        />
         <p id="buslist">BUS LIST</p>
         {/* <Icon size="big" name="sign-out" id="btnlogout" onClick={signout} /> */}
         <p></p>
@@ -65,7 +69,12 @@ function Home(props) {
         {busList.map((item) => (
           <Link to={{ pathname: "/maps", busid: item.routeId }}>
             <div className="listitemcontainer">
-              <List.Icon size="small" name="bus" id="busicon" />
+              <List.Icon
+                size="small"
+                name="bus"
+                id="busicon"
+                key={item.vehicleNo}
+              />
 
               <p id="busno">{item.routeId}</p>
               <p id="vehicleno">{item.vehicleNo}</p>

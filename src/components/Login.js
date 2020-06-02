@@ -11,14 +11,6 @@ function Login(props) {
   const [error, setError] = useState("");
 
   const setAuthenticated = () => {
-    // let config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //     "Access-Control-Allow-Headers": "*",
-    //     // Authorization: "Bearer " + localStorage.getItem("user").access_token,
-    //   },
-    // };
     if (username.length < 5 || password < 5) {
       setError("Credentials too short!");
     }
@@ -39,12 +31,10 @@ function Login(props) {
           if (AuthHelper.authenticate) {
             props.history.push("/buslist");
           } else {
-            console.log(res.data.message);
           }
         }
       })
       .catch((err) => {
-        console.log(err);
         setError("Wrong Credentials");
       });
   };
