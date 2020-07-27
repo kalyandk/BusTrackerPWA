@@ -21,7 +21,7 @@ function Home(props) {
 
     axios
       .get(
-        "http://ec2-3-7-131-60.ap-south-1.compute.amazonaws.com/buses",
+        "http://ec2-13-233-193-38.ap-south-1.compute.amazonaws.com/buses",
         config
       )
       .then((res) => {

@@ -26,6 +26,7 @@ export class Maps extends Component {
         lng: 78.488019,
       },
       toggleInfo: false,
+      coordsAvailable: 0,
     };
   }
 
@@ -46,15 +47,24 @@ export class Maps extends Component {
 
     axios
       .get(
-        "http://ec2-3-7-131-60.ap-south-1.compute.amazonaws.com/tracking",
+        "http://ec2-13-233-193-38.ap-south-1.compute.amazonaws.com/tracking",
         config
       )
       .then((res) => {
-        // console.log(res.data);
-        let newState = { ...this.state };
-        newState.coords.lat = Number(res.data[0].latitude);
-        newState.coords.lng = Number(res.data[0].longitude);
-        this.setState(newState);
+        console.log(res.data.length);
+        if (res.data.length > 0) {
+          let newState = { ...this.state };
+          newState.coords.lat = Number(res.data[0].latitude);
+          newState.coords.lng = Number(res.data[0].longitude);
+          newState.coordsAvailable = 1;
+          this.setState(newState);
+        } else {
+          let newState = { ...this.state };
+          newState.coordsAvailable = 2;
+          this.setState(newState);
+        }
+        console.log(res.data);
+
         // console.log(this.state.coords);
       });
   };
@@ -72,6 +82,7 @@ export class Maps extends Component {
     // console.log(this.state.coords);
     return (
       <div>
+        {this.state.coordsAvailable === 2 && <p>{"Coords not available!"}</p>}
         <div>
           <Map
             google={this.props.google}
@@ -105,5 +116,5 @@ export class Maps extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyCclG7w5m1rAyb_KxV8cp2eY4FsTtTm7Bs",
+  apiKey: "AIzaSyArbAIIe2DNFzV8bWdqno7S-9UcZmMlkos",
 })(Maps);
