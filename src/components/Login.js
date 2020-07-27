@@ -4,6 +4,7 @@ import { Button, Form } from "semantic-ui-react";
 import "../componentcss/Login.css";
 import axios from "axios";
 import AuthHelper from "./AuthHelper";
+import url from "./url";
 function Login(props) {
   // state
   const [username, setUsername] = useState("");
@@ -20,10 +21,7 @@ function Login(props) {
     };
 
     axios
-      .post(
-        "http://ec2-13-233-193-38.ap-south-1.compute.amazonaws.com/login",
-        data
-      )
+      .post(url + "login", data)
       .then((res) => {
         if (res.data.access_token) {
           AuthHelper.authenticate();

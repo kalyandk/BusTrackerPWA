@@ -7,6 +7,7 @@ import AuthHelper from "./AuthHelper";
 
 import SideDrawer from "./SideDrawer";
 import Backdrop from "./Backdrop";
+import url from "./url";
 function Home(props) {
   const [busList, setBusList] = useState([]);
   const [sidebarShow, setSidebarShow] = useState(false);
@@ -20,10 +21,7 @@ function Home(props) {
     };
 
     axios
-      .get(
-        "http://ec2-13-233-193-38.ap-south-1.compute.amazonaws.com/buses",
-        config
-      )
+      .get(url + "buses", config)
       .then((res) => {
         setBusList(res.data);
       })

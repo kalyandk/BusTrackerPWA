@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Select, Form, TextArea, Button, Icon } from "semantic-ui-react";
 import axios from "axios";
 import "../componentcss/More.css";
+import url from "./url";
 
 const More = (props) => {
   const [body, setBody] = useState("");
@@ -46,11 +47,7 @@ const More = (props) => {
     };
 
     axios
-      .post(
-        "http://ec2-13-233-193-38.ap-south-1.compute.amazonaws.com/complaints",
-        data,
-        config
-      )
+      .post(url + "complaints", data, config)
       .then((res) => {
         setMessage(res.data.message);
       })

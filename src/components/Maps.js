@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Icon } from "semantic-ui-react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import url from "./url";
 const busimg = require("../assets/busnew.png");
 const mapStyles = {
   width: "100%",
@@ -45,28 +46,23 @@ export class Maps extends Component {
       },
     };
 
-    axios
-      .get(
-        "http://ec2-13-233-193-38.ap-south-1.compute.amazonaws.com/tracking",
-        config
-      )
-      .then((res) => {
-        console.log(res.data.length);
-        if (res.data.length > 0) {
-          let newState = { ...this.state };
-          newState.coords.lat = Number(res.data[0].latitude);
-          newState.coords.lng = Number(res.data[0].longitude);
-          newState.coordsAvailable = 1;
-          this.setState(newState);
-        } else {
-          let newState = { ...this.state };
-          newState.coordsAvailable = 2;
-          this.setState(newState);
-        }
-        console.log(res.data);
+    axios.get(url + "tracking", config).then((res) => {
+      console.log(res.data.length);
+      if (res.data.length > 0) {
+        let newState = { ...this.state };
+        newState.coords.lat = Number(res.data[0].latitude);
+        newState.coords.lng = Number(res.data[0].longitude);
+        newState.coordsAvailable = 1;
+        this.setState(newState);
+      } else {
+        let newState = { ...this.state };
+        newState.coordsAvailable = 2;
+        this.setState(newState);
+      }
+      console.log(res.data);
 
-        // console.log(this.state.coords);
-      });
+      // console.log(this.state.coords);
+    });
   };
   componentDidMount() {
     // console.log("busid" + this.props.location.busid);
